@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 # for i in range(1974776,1975776):
-url = f"https://www.varzesh3.com/news/{1974776}"
+url = f"https://www.varzesh3.com/news/{1974786}"
 res = requests.get(url).text
 res_b = BeautifulSoup(res , "html.parser")
 ##################################################################
