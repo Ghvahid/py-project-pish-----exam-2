@@ -6,7 +6,7 @@ file = open("VarzeshNews.csv", "w", encoding="UTF-8", newline="")
 writer = csv.writer(file)
 
 list_all = []
-for i in range(1974776,1974785):
+for i in range(1922457,1923457):
     inner_list = []
     url = f"https://www.varzesh3.com/news/{i}"
     res = requests.get(url).text
