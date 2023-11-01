@@ -13,20 +13,30 @@ for i in range(selected_news_code,selected_news_code+1000):
     res = requests.get(url).text
     res_b = BeautifulSoup(res , "html.parser")
     print(i)
-    all_title = res_b.find("div", class_ = "news-detail-text")
-    title = str(all_title.find("h1", class_="headline")).replace('<h1 class="headline">', '').replace("</h1>","")
-    inner_list.append(title)
-    # print("title : ",title)
+    try:
+        all_title = res_b.find("div", class_ = "news-detail-text")
+        title = str(all_title.find("h1", class_="headline")).replace('<h1 class="headline">', '').replace("</h1>","")
+        inner_list.append(title)
+        # print("title : ",title)
+    except AttributeError:
+        title = "Without any tag"
+        inner_list.append(title)
 
+    try:
+        view = int(float(str(all_title.find("div", class_ = "news-info")).split("<span>")[3].replace("| </span>","").replace(" بازدید", "").replace("K",""))*1000)
+        inner_list.append(view)
+        # print("view : ",view)
+    except AttributeError:
+        view = 0
+        inner_list.append(view)
 
-    view = int(float(str(all_title.find("div", class_ = "news-info")).split("<span>")[3].replace("| </span>","").replace(" بازدید", "").replace("K",""))*1000)
-    inner_list.append(view)
-    # print("view : ",view)
-
-
-    all_tags = str(res_b.find("div", class_ = "tags tags-news").find_all("span")).replace("<span>","").replace("</span>","").replace("[","").replace("]","")
-    inner_list.append(all_tags)
-    # print("tags for this news: ",all_tags)
+    try:
+        all_tags = str(res_b.find("div", class_ = "tags tags-news").find_all("span")).replace("<span>","").replace("</span>","").replace("[","").replace("]","")
+        inner_list.append(all_tags)
+        # print("tags for this news: ",all_tags)
+    except AttributeError:
+        all_tags = "Without any tag"
+        inner_list.append(all_tags)
 
     list_all.append(inner_list)
 
