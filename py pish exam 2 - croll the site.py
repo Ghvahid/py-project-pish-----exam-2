@@ -41,6 +41,7 @@ for i in range(selected_news_code,selected_news_code+1000):
     list_all.append(inner_list)
 
 
+
 writer.writerow(['title', 'view', 'tags'])
 writer.writerows(list_all)
 file.close()
