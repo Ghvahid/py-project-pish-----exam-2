@@ -14,10 +14,5 @@ view = int(str(all_title.find("div", class_ = "news-info")).split("<span>")[3].r
 # print("view : ",view)
 ####################################################################
 
-all_tags = str(res_b.find("div", class_ = "tags tags-news")).replace('<div class="tags tags-news">\n<div class="tag">\n<a href="/tag/', "").replace('">',"").replace("<span>", "").replace("</span>","").replace("</a>\n","")
-
-# tag = all_tags.find("div", class_ = "tag")
-
-print(all_tags)
-
-# i += 1
+all_tags = str(res_b.find("div", class_ = "tags tags-news").find_all("span")).replace("<span>","").replace("</span>","").replace("[","").replace("]","")
+print("tags for this news: ",all_tags)
